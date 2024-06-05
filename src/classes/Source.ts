@@ -43,7 +43,7 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
   /**
    * 機器人的 client
    */
-  public client: Client;
+  public client: Client<true>;
 
   /**
    * 來源的建立時間
