@@ -64,7 +64,6 @@ export default class Choose extends Command<string[]> {
   private getWeight(input: string): [number, string] {
     let weight: number = 1, option: string = input;
     const match = this.weightMatch.exec(input);
-    console.log(match)
     if (match) {
       weight = parseFloat(match[1] ?? "1")
       option = match[2]
@@ -79,7 +78,6 @@ export default class Choose extends Command<string[]> {
 
     for (const item of items) {
       const [weight, name] = this.getWeight(item);
-      console.log(weight, name)
   
       parsedItems.push({
         name: name,
