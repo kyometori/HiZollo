@@ -40,6 +40,8 @@ export default class Choose extends Command<string[]> {
     });
   }
 
+  private weightMatch: RegExp = /^(?:(\d+(?:\.\d+)?):)?(\w+)$/;
+
   public async execute(source: Source, options: string[]): Promise<void> {
     options = options.filter(o => o != null);
 
@@ -49,13 +51,45 @@ export default class Choose extends Command<string[]> {
       return;
     }
 
-    const option = randomElement(options);
+
+    const option = this.weightedRandomElement(options).name;
     const answer = randomElement(this.replys).replace('<>', option)
     await source.defer();
     await source.update({
       content: answer,
       allowedMentions: { parse: [] }
     })
+  }
+
+  private getWeight(input: string): [number, string] {
+    const [, weight, string] = this.weightMatch.exec(input) as any as [string, string, string]
+    return [parseFloat(weight) ?? 1, string];
+  }
+
+  private weightedRandomElement(items: string[]) {
+    const parsedItems = [];
+    let totalWeight = 0;
+    for (const item of items) {
+      const [weight, name] = this.getWeight(item);
+  
+      parsedItems.push({
+        name: name,
+        weight: weight
+      });
+      totalWeight += weight;
+    }
+  
+    const randomWeight = Math.random() * totalWeight;
+  
+    let currentWeight = 0;
+    for (const item of parsedItems) {
+      currentWeight += item.weight;
+      if (currentWeight >= randomWeight) {
+        return item;
+      }
+    }
+  
+    return parsedItems[parsedItems.length - 1];
   }
 
   private replys = [
