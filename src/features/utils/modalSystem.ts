@@ -19,7 +19,7 @@
  */
 
 import { InteractionCollector, ActionRowBuilder, MessageCreateOptions, ComponentType, InteractionType, ButtonBuilder, APIButtonComponent, ButtonStyle, APIButtonComponentWithURL, ModalSubmitInteraction, Collection } from 'discord.js';
-import { ModelSystemContentOptions, ModelSystemOptions } from '../../typings/interfaces';
+import { ModalSystemContentOptions, ModalSystemOptions } from '../../typings/interfaces';
 
 type CustomMessageOptions = Omit<MessageCreateOptions, 'flags'> & { fetchReply?: boolean };
 
@@ -28,7 +28,9 @@ type CustomMessageOptions = Omit<MessageCreateOptions, 'flags'> & { fetchReply?:
  * @param options 選項
  * @returns 使用者提交的表單互動
  */
-export default async function modelSystem({ source, buttons: { open, close }, modal, time = 60e3, contents }: ModelSystemOptions): Promise<ModalSubmitInteraction | null> {
+export default async function modalSystem({ source, buttons: { open, close }, modal, time = 60e3, contents }: ModalSystemOptions): Promise<ModalSubmitInteraction | null> {
+  if (!source.client.isReady()) return null;
+
   if (buttonIsLink(open.data) || buttonIsLink(close.data)) {
     throw new Error('Some of the buttons are link buttons.');
   }
@@ -36,7 +38,7 @@ export default async function modelSystem({ source, buttons: { open, close }, mo
     throw new Error('Some of the buttons don\'t have custom ids set.');
   }
   if (!modal.data.custom_id) {
-    throw new Error('The model doesn\'t have custom id set.');
+    throw new Error('The modal doesn\'t have custom id set.');
   }
 
   const openCustomId = open.data.custom_id;
@@ -107,19 +109,19 @@ export default async function modelSystem({ source, buttons: { open, close }, mo
 }
 
 /**
- * 把給定物件`{ [key: keyof ModelSystemContentOptions]: string }` 對應出一個新物件，使新物件的鍵與原物件相同，但值是 `{ content: string }`
+ * 把給定物件`{ [key: keyof ModalSystemContentOptions]: string }` 對應出一個新物件，使新物件的鍵與原物件相同，但值是 `{ content: string }`
  * @param contents 給定物件
  * @returns 新物件
  */
-function getMessageOptions(contents: ModelSystemContentOptions): Record<keyof ModelSystemContentOptions, CustomMessageOptions> {
+function getMessageOptions(contents: ModalSystemContentOptions): Record<keyof ModalSystemContentOptions, CustomMessageOptions> {
   // 暫時設成 Partial，實際上所有鍵都會有值對應
-  let messageOptions: Partial<Record<keyof ModelSystemContentOptions, CustomMessageOptions>> = {};
+  let messageOptions: Partial<Record<keyof ModalSystemContentOptions, CustomMessageOptions>> = {};
 
   for (const key in contents) {
-    messageOptions[key as keyof ModelSystemContentOptions] = { content: contents[key as keyof ModelSystemContentOptions] };
+    messageOptions[key as keyof ModalSystemContentOptions] = { content: contents[key as keyof ModalSystemContentOptions] };
   }
   
-  return messageOptions as Record<keyof ModelSystemContentOptions, CustomMessageOptions>;
+  return messageOptions as Record<keyof ModalSystemContentOptions, CustomMessageOptions>;
 }
 
 /**
