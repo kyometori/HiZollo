@@ -30,8 +30,7 @@ export default class Oof extends HiddenCommand {
     return /^o{2,}f$/.test(message.content.toLowerCase());
   }
 
-
   public execute(message: Message): boolean {
-    return this.rareResponse(message, ['ooof'], ['ooooof'], ['ƠơỚȱỌǪǫỜờỠŏỖŎŏȎȰꞘ']);
+    return this.partialResponse(message, ['ooof'], ['ooooof'], ['ƠơỚȱỌǪǫỜờỠŏỖŎŏȎȰꞘ']);
   }
 }

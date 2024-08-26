@@ -30,8 +30,7 @@ export default class Yee extends HiddenCommand {
     return /^ye{2,}$/.test(message.content.toLowerCase());
   }
 
-
   public execute(message: Message): boolean {
-    return this.rareResponse(message, ['yeee'], ['yeeeeeeee'], ['yEEEEeEEeEeeEeE'], ['YĒÊêềËĔËëëĒĕÈèēÉé']);
+    return this.partialResponse(message, ['yeee', 'yeeeeeeee'], ['yEEEEeEEeEeeEeE'], ['YĒÊêềËĔËëëĒĕÈèēÉé']);
   }
 }

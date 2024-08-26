@@ -30,11 +30,11 @@ export default class Lol extends HiddenCommand {
     return /^lo+l$/.test(message.content.toLowerCase());
   }
 
-  private r1 = ['loooooooooool'];
-  private r2 = ['LoOoOoOoL'];
+  private r1 = ['loool', 'loooooool', 'loooooooooooooool'];
+  private r2 = ['LoOoL', 'LoOoOoOoL', 'LoOoOoOoOoOoOoOoL'];
   private r3 = ['你已被 LOOOOOOOOL 之神造訪', 'ⱠƠǪỜỠỖỚỌḼ'];
 
   public execute(message: Message): boolean {
-    return this.rareResponse(message, this.r1, this.r2, this.r3);
+    return this.partialResponse(message, this.r1, this.r2, this.r3);
   }
 }

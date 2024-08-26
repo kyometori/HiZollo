@@ -30,8 +30,7 @@ export default class Noword extends HiddenCommand {
     return /^\.{3,}$/.test(message.content.toLowerCase());
   }
 
-
   public execute(message: Message): boolean {
-    return this.rareResponse(message, ['.......'], ['.......'], ['.......'], ['。。。。。。。']);
+    return this.partialResponse(message, ['.......'], ['.......'], ['。。。。。。。']);
   }
 }

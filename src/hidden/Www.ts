@@ -30,8 +30,7 @@ export default class Www extends HiddenCommand {
     return /^[wWŵŴ]{3,}$/.test(message.content);
   }
 
-
   public execute(message: Message): boolean {
-    return this.rareResponse(message, ['w'], ['www'], ['wwwwww'], ['ŵŵwŴWMŴMWwwŴwMŵWŵMŴwŵŵŴ']);
+    return this.partialResponse(message, ['w', 'www'], ['wwwwww'], ['ŵŵwŴWMŴMWwwŴwMŵWŵMŴwŵŵŴ']);
   }
 }

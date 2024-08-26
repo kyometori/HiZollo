@@ -31,7 +31,6 @@ export default class Useful extends HiddenCommand {
     return message.content === `${config.bot.prefix}useful`;
   }
 
-
   public execute(message: Message): boolean {
     message.channel.send('這是一個有用的指令，嘿嘿');
     return true;
