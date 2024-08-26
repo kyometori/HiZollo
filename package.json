@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "private": true,
   "engines": {
-    "node": "^18.2.1"
+    "node": ">=18.2.1"
   },
   "scripts": {
     "dev": "tsc-watch --onSuccess resolve-tspaths",
@@ -30,21 +30,20 @@
   },
   "homepage": "https://github.com/HiZollo/Junior-HiZollo#readme",
   "dependencies": {
-    "@discordjs/voice": "^0.13.0",
-    "@hizollo/calculator": "^1.0.2",
+    "@discordjs/voice": "^0.17.0",
+    "@hizollo/calculator": "^1.1.1",
     "@hizollo/games": "^2.5.0",
     "@hizollo/osu-api": "^1.2.0",
-    "axios": "^1.4.0",
-    "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1",
-    "emoji-regex": "^10.2.1",
-    "ffmpeg-static": "^5.1.0",
-    "libsodium-wrappers": "^0.7.11",
-    "play-dl": "^1.9.6"
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "emoji-regex": "^10.3.0",
+    "ffmpeg-static": "^5.2.0",
+    "libsodium-wrappers": "^0.7.15",
+    "play-dl": "^1.9.7"
   },
   "devDependencies": {
-    "resolve-tspaths": "^0.8.15",
-    "tsc-watch": "^6.0.4",
-    "typescript": "^5.2.2"
+    "resolve-tspaths": "^0.8.19",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.4.5"
   }
 }
