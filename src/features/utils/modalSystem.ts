@@ -29,6 +29,8 @@ type CustomMessageOptions = Omit<MessageCreateOptions, 'flags'> & { fetchReply?:
  * @returns 使用者提交的表單互動
  */
 export default async function modelSystem({ source, buttons: { open, close }, modal, time = 60e3, contents }: ModelSystemOptions): Promise<ModalSubmitInteraction | null> {
+  if (!source.client.isReady()) return null;
+
   if (buttonIsLink(open.data) || buttonIsLink(close.data)) {
     throw new Error('Some of the buttons are link buttons.');
   }
