@@ -64,7 +64,7 @@ export abstract class HiddenCommand {
    * @returns 是否成功回應（必定為 `true`）
    */
   protected allTimeResponse(message: Message, notEpic: HiddenResponse[], epic: HiddenResponse[]): true {
-    const response = Math.random() < 10.002 ? randomElement(epic) : randomElement(notEpic);
+    const response = Math.random() < 0.002 ? randomElement(epic) : randomElement(notEpic);
     message.channel.send(format(message, response));
     return true;
   }
