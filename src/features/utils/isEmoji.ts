@@ -19,13 +19,14 @@
  */
 
 import emojiRegex from "emoji-regex";
-const regex = emojiRegex();
 /**
  * 檢查一個一串是不是表情符號，或是否符合 Discord 的表情符號格式
  */
 export default function isEmoji(target: string): boolean {
+  target = target.trim();
+
   // 是否為表情符號
-  if (regex.test(target)) return true;
+  if (emojiRegex().test(target)) return true;
 
   // 是否為 Discord 的自訂表情符號
   if (/<?(a)?:?(\w{2,32}):(\d{17,19})>?/.test(target)) return true;

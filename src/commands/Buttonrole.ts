@@ -232,8 +232,9 @@ export default class Buttonrole extends Command<[Role, string, string, string]> 
   }
 
   private compareEmoji(emojiName: string | null, emojiResolvable: string | null): boolean {
-    return emojiName === emojiResolvable ||
-      emojiName === (emojiResolvable?.match(/<?(a)?:?(\w{2,32}):(\d{17,20})>?/)?.[3] ?? null);
+    const custom = emojiResolvable?.match(/<?(a)?:?(\w{2,32}):(\d{17,20})>?/)?.[3] ?? null;
+    if (custom) return emojiName === custom;
+    return emojiName === emojiResolvable;
   }
 
   private resolveStyle(style: string): ButtonStyle {

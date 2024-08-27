@@ -391,7 +391,7 @@ export class CommandParser extends null {
         return { arg: null, status: CommandParserOptionResultStatus.Pass };
       }
       if (data.parseAs === CommandOptionType.Emoji && !isEmoji(argument)) {
-        return { arg: null, status: CommandParserOptionResultStatus.WrongFormat };
+        return { arg: argument, status: CommandParserOptionResultStatus.WrongFormat };
       }
       return { arg: argument, status: CommandParserOptionResultStatus.Pass };
     },
