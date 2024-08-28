@@ -83,7 +83,7 @@ export default class Calc extends Command<[string]> {
     [ErrorCodes.MissingExpressions]: `這個運算式的尾端缺少了一些東西`, 
 
     // Stack
-    [ErrorCodes.StackOverflow]: `你的運算式太長了，請你考慮分段計算，不然我的腦袋要爆了。`, 
+    [ErrorCodes.StackOverflow]: `超出堆疊上限`, 
     
     // Implementation
     [ErrorCodes.EmptyStack]: `指令好像出了一點問題，請你將你的算式和以下錯誤訊息使用 \`bug\` 指令回報給開發者：\n\`\`\`\nError: The expression stack is empty.\n\`\`\``, 
