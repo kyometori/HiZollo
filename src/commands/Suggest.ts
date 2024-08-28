@@ -31,7 +31,7 @@ export default class Suggest extends Command<[]> {
     super({ 
       type: CommandType.Contact, 
       name: 'suggest', 
-      description: `向 ${mainGuild.name}提供建議`, 
+      description: `向 ${mainGuild.name} 提供建議`, 
       cooldown: 600, 
       permissions: {
         bot: [PermissionFlagsBits.EmbedLinks]
