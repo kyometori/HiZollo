@@ -113,21 +113,21 @@ export interface CooldownManagerAddUserOptions extends CooldownManagerMethodOpti
   duration?: number;
 }
 
-export interface ModelSystemContentOptions {
+export interface ModalSystemContentOptions {
   start: string;
   success: string;
   exit: string;
   idle: string;
 }
 
-export interface ModelSystemOptions {
+export interface ModalSystemOptions {
   source: Source;
   buttons: {
     open: ButtonBuilder,
     close: ButtonBuilder
   };
   modal: ModalBuilder;
-  contents: ModelSystemContentOptions;
+  contents: ModalSystemContentOptions;
   time?: number;
 }
 

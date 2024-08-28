@@ -19,11 +19,11 @@
  */
 
 import { ApplicationCommandOptionChoiceData, ApplicationCommandOptionType, Attachment, ChatInputCommandInteraction, Message, MessageMentions } from "discord.js";
-import emojiRegex from "emoji-regex";
 import { ArgumentParseType, CommandOptionType, CommandParserOptionResultStatus } from "../typings/enums";
 import { CommandParserOptionResult, CommandParserResult } from "../typings/types";
 import { ArgumentParseMethod, HZCommandOptionData } from "../typings/types";
 import { Command } from "./Command";
+import isEmoji from "../features/utils/isEmoji";
 
 type ParseMessageOptionFunctions = {
   [key in ApplicationCommandOptionType]: (data: {
@@ -299,7 +299,7 @@ export class CommandParser extends null {
           return { arg: original, status: CommandParserOptionResultStatus.NotInChoices, choices: data.choices };
         }
       }
-      if (data.parseAs === CommandOptionType.Emoji && !emojiRegex().test(argument) && !/<?(a)?:?(\w{2,32}):(\d{17,20})>?/.test(argument)) {
+      if (data.parseAs === CommandOptionType.Emoji && !isEmoji(argument)) {
         return { arg: original, status: CommandParserOptionResultStatus.WrongFormat };
       }
       if ('minLength' in data) {
@@ -390,7 +390,7 @@ export class CommandParser extends null {
       if (argument === null) {
         return { arg: null, status: CommandParserOptionResultStatus.Pass };
       }
-      if (data.parseAs === CommandOptionType.Emoji && !emojiRegex().test(argument) && !/<?(a)?:?(\w{2,32}):(\d{17,19})>?/.test(argument) && !/[🇦-🇿]/u.test(argument)) {
+      if (data.parseAs === CommandOptionType.Emoji && !isEmoji(argument)) {
         return { arg: null, status: CommandParserOptionResultStatus.WrongFormat };
       }
       return { arg: argument, status: CommandParserOptionResultStatus.Pass };

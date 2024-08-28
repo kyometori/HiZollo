@@ -22,7 +22,7 @@ import { CalcError, Calculator, ErrorCodes } from "@hizollo/calculator";
 import { ApplicationCommandOptionType } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import removeMd from "../features/utils/removeMd";
+// import removeMd from "../features/utils/removeMd";
 import { ArgumentParseType, CommandType } from "../typings/enums";
 
 export default class Calc extends Command<[string]> {
@@ -55,7 +55,7 @@ export default class Calc extends Command<[string]> {
         return;
       }
       await source.defer();
-      await source.update(`算式：\n> ${removeMd(formula)}\n\n結果：\n> ${removeMd(result)}`);
+      await source.update(`算式：\n\`\`\`\n${formula}\n\`\`\`\n結果：\n\`\`\`\n${result}\n\`\`\``);
     } catch (error: unknown) {
       const err = error as CalcError<ErrorCodes>
       await source.defer({ ephemeral: true });
@@ -87,6 +87,7 @@ export default class Calc extends Command<[string]> {
     
     // Implementation
     [ErrorCodes.EmptyStack]: `指令好像出了一點問題，請你將你的算式和以下錯誤訊息使用 \`bug\` 指令回報給開發者：\n\`\`\`\nError: The expression stack is empty.\n\`\`\``, 
-    [ErrorCodes.NonEmptyStack]: `指令好像出了一點問題，請你將你的算式和以下錯誤訊息使用 \`bug\` 指令回報給開發者：\n\`\`\`Error: Non-empty stack after parsing.\n\`\`\``, 
+    [ErrorCodes.NonEmptyStack]: `指令好像出了一點問題，請你將你的算式和以下錯誤訊息使用 \`bug\` 指令回報給開發者：\n\`\`\`Error: Non-empty stack after parsing.\n\`\`\``,
+    [ErrorCodes.StackOverflow]: `你的運算式太長了，請你考慮分段計算，不然我的腦袋要爆了。`, 
   } as const;
 }
