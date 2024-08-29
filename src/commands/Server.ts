@@ -64,10 +64,9 @@ export default class Server extends Command<[]> {
 
   private parseChannelCount(channels: Collection<string, GuildBasedChannel>): string {
     let text = 0, voice = 0, stage = 0, announcement = 0, forum = 0, thread = 0;
-    channels.forEach(({ type, name }) => {
+    channels.forEach(({ type }) => {
       switch (type) {
         case ChannelType.GuildText:
-          console.log(name);
           text++;
           break;
         

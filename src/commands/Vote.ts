@@ -29,7 +29,7 @@ export default class Vote extends Command<string[]> {
       type: CommandType.Utility, 
       name: 'vote', 
       description: '讓我幫你發起一場投票', 
-      extraDescription: '這個指令將在下個更新中下架，建議你使用 Discord 內建的投票功能', 
+      extraDescription: '這個指令將在下個更新中下架，推薦你使用 Discord 內建的投票功能', 
       options: [{ 
         type: ApplicationCommandOptionType.String, 
         name: '主題', 
@@ -84,7 +84,7 @@ export default class Vote extends Command<string[]> {
 
     const deprecated = new EmbedBuilder()
       .applyHiZolloSettings(source.member, 'HiZollo 的幫助中心')
-      .setDescription("這個指令將在下個更新中下架，建議你使用 Discord 內建的[投票功能](https://support.discord.com/hc/zh-tw/articles/22163184112407-%E6%8A%95%E7%A5%A8%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C)。")
+      .setDescription("這個指令將在下個更新中下架，推薦你使用 Discord 內建的[投票功能](https://support.discord.com/hc/zh-tw/articles/22163184112407-%E6%8A%95%E7%A5%A8%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C)。")
       .setTimestamp();
     await source.followUp({ ephemeral: true, embeds: [deprecated] });
   }

@@ -101,9 +101,10 @@ export abstract class HiddenCommand {
 
 function format(message: Message, response: HiddenResponse): HiddenResponse {
   const location = message.guild?.name ?? "這裡";
+  const halfwidth = /[\x21-\x7e]/;
   const formattedLocation = 
-    (/[\x21-\x7e]/.test(location[0]) ? " " : "") + location +
-    (/[\x21-\x7e]/.test(location[location.length - 1]) ? " " : "");
+    (halfwidth.test(location[0]) ? " " : "") + location +
+    (halfwidth.test(location[location.length - 1]) ? " " : "");
 
   if (typeof response === "string") {
     response = response.replaceAll('%u', message.author.toString());
