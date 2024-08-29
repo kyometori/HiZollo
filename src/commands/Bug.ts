@@ -31,7 +31,7 @@ export default class Bug extends Command<[]> {
     super({ 
       type: CommandType.Contact, 
       name: 'bug', 
-      description: `向 ${mainGuild.name}回報錯誤`, 
+      description: `向 ${mainGuild.name} 回報錯誤`, 
       cooldown: 600, 
       permissions: {
         bot: [PermissionFlagsBits.EmbedLinks]

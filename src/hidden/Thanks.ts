@@ -31,7 +31,6 @@ export default class Thanks extends HiddenCommand {
       (('name' in message.channel && message.channel?.name == '釣魚拉霸室') || message.channel.isTestChannel());
   }
 
-
   public execute(message: Message): boolean {
     message.channel.send(
       '==========[祈福]========== \n' +

@@ -18,10 +18,11 @@
  * along with Junior HiZollo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Message, MessageCreateOptions } from "discord.js";
+import type { Message, MessageCreateOptions } from "discord.js";
 import randomElement from "../features/utils/randomElement";
-import randomInt from "../features/utils/randomInt";
 import { Promisable } from "../typings/utils";
+
+type HiddenResponse = string | MessageCreateOptions;
 
 /**
  * 一個隱藏指令的藍圖
@@ -62,48 +63,56 @@ export abstract class HiddenCommand {
    * @param epic 彩蛋回應
    * @returns 是否成功回應（必定為 `true`）
    */
-  protected epicResponse(message: Message, notEpic: (string | MessageCreateOptions)[], epic: (string | MessageCreateOptions)[]): true {
-    message.channel.send(
-      randomInt(1, 1000) <= 2 ?
-        randomElement(epic) :
-        randomElement(notEpic)
-    );
+  protected allTimeResponse(message: Message, notEpic: HiddenResponse[], epic: HiddenResponse[]): true {
+const response = Math.random() < 0.02 ? randomElement(epic) : randomElement(notEpic);
+    message.channel.send(format(message, response));
     return true;
   }
 
   /**
-   * 給出隨機回應，但沒有回應的機率比較高
+   * 機率性給出回應
    * @param message 來源訊息
-   * @param responses 所有回應的集合，參數駐標越大的回應被抽出的機率越低，如果某項參數是 `null`，那抽到該項時不會有任何回應
+   * @param common 常見回應
+   * @param rare 稀有回應
+   * @param epic 史詩回應
    * @returns 是否成功回應
    */
-  protected rareResponse(message: Message, ...responses: ((string | MessageCreateOptions)[] | null)[]): boolean {
-    return this.randomResponse(message, null, ...responses);
-  }
-
-  /**
-   * 給出隨機回應
-   * @param message 來源訊息
-   * @param responses 所有回應的集合，參數駐標越大的回應被抽出的機率越低，如果某項參數是 `null`，那抽到該項時不會有任何回應
-   * @returns 是否成功回應
-   */
-  protected randomResponse(message: Message, ...responses: ((string | MessageCreateOptions)[] | null)[]): boolean {
+  protected partialResponse(message: Message, common: HiddenResponse[], rare: HiddenResponse[], epic: HiddenResponse[]): boolean {
     const random = Math.random();
-    const mappedRandom = random / (11 - 10 * random);
-    const index = Math.trunc(mappedRandom * responses.length);
 
-    const group = responses[index];
-    if (!group) return false;
-
-    let response = randomElement(group);
-    if (typeof response === 'string') {
-      response = response.replaceAll('%u', message.author.toString());
+    let response: HiddenResponse = "";
+    if (random < 0.007) {
+      response = randomElement(epic);
+    }
+    else if (random < 0.077) {
+      response = randomElement(rare);
+    }
+    else if (random < 0.4) {
+      response = randomElement(common);
     }
     else {
-      response.content = response.content?.replaceAll('%u', message.author.toString());
+      return false;
     }
-    message.channel.send(response);
 
+    message.channel.send(format(message, response));
     return true;
   }
+}
+
+function format(message: Message, response: HiddenResponse): HiddenResponse {
+  const location = message.guild?.name ?? "這裡";
+  const halfwidth = /[\x21-\x7e]/;
+  const formattedLocation = 
+    (halfwidth.test(location[0]) ? " " : "") + location +
+    (halfwidth.test(location[location.length - 1]) ? " " : "");
+
+  if (typeof response === "string") {
+    response = response.replaceAll('%u', message.author.toString());
+    response = response.replaceAll('%g', formattedLocation);
+  }
+  else {
+    response.content = response.content?.replaceAll('%u', message.author.toString());
+    response.content = response.content?.replaceAll('%g', formattedLocation);
+  }
+  return response;
 }

@@ -18,7 +18,8 @@
  * along with Junior HiZollo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ChatInputCommandInteraction, Client, Guild, GuildMember, GuildTextBasedChannel, InteractionDeferReplyOptions, InteractionResponse, Message, MessageCreateOptions, MessagePayload, User, WebhookMessageEditOptions } from "discord.js";
+import type { BaseMessageOptions, Client, Guild, GuildMember, GuildTextBasedChannel, InteractionDeferReplyOptions, InteractionResponse, MessageCreateOptions, MessagePayload, User, WebhookMessageEditOptions } from "discord.js";
+import { ChatInputCommandInteraction, Message } from "discord.js";
 import tempMessage from "../features/utils/tempMessage";
 
 /**
@@ -99,7 +100,7 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
    * **[Type Guard]** 來源是斜線指令
    */
   public isChatInput(): this is Source<ChatInputCommandInteraction<"cached">> {
-    return this.source instanceof ChatInputCommandInteraction
+    return this.source instanceof ChatInputCommandInteraction;
   }
 
   /**
@@ -200,6 +201,16 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
       return this.source.editReply(options);
     }
     return this.source.channel.send(options)
+  }
+
+  public async followUp(options: string | (BaseMessageOptions & { ephemeral?: boolean })): Promise<Message> {
+    if (this.source instanceof ChatInputCommandInteraction) {
+      return this.source.followUp(options);
+    }
+    if (typeof options !== "string" && options.ephemeral) {
+      return tempMessage(this.source.channel, options, 5);
+    }
+    return this.source.channel.send(options);
   }
 
   /**

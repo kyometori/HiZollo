@@ -35,6 +35,6 @@ export default class Gg extends HiddenCommand {
   private r3 = ['系統提示：您已獲得ㄐㄐ之力', 'ǴG̃ǵǤǧġĢĠĝĜĞğḠḡǦģg̃'];
 
   public execute(message: Message): boolean {
-    return this.rareResponse(message, this.r1, this.r2, this.r3);
+    return this.partialResponse(message, this.r1, this.r2, this.r3);
   }
 }
