@@ -81,8 +81,6 @@ export default class Calc extends Command<[string]> {
     [ErrorCodes.MissingCloseParenthesis]: `缺少右括號`, 
     [ErrorCodes.NotANumber]: `應該要是數字，但它不是`, 
     [ErrorCodes.MissingExpressions]: `這個運算式的尾端缺少了一些東西`, 
-
-    // Stack
     
     // Implementation
     [ErrorCodes.EmptyStack]: `指令好像出了一點問題，請你將你的算式和以下錯誤訊息使用 \`bug\` 指令回報給開發者：\n\`\`\`\nError: The expression stack is empty.\n\`\`\``, 
