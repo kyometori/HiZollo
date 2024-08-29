@@ -65,7 +65,7 @@ export default class Choose extends Command<string[]> {
     let weight: number = 1, option: string = input;
     const match = this.weightMatch.exec(input);
     if (match) {
-      weight = parseFloat(match[1] ?? "1")
+      weight = parseFloat(match[1]);
       option = match[2]
     }
     
