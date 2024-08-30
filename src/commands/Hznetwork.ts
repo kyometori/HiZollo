@@ -28,7 +28,7 @@ import { Translator } from "../classes/Translator";
 export default class Hznetwork extends Command<[string]> {
   constructor() {
     super({
-      type: CommandType.Network, 
+      type: CommandType.Developer, 
       name: 'hznetwork', 
       description: '查看 HiZolllo Network 的即時資訊', 
       aliases: ['hzn'], 

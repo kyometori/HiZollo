@@ -26,7 +26,7 @@ import { ArgumentParseType, CommandType } from "../typings/enums";
 export default class Repeat extends Command<[string]> {
   constructor() {
     super({ 
-      type: CommandType.Fun, 
+      type: CommandType.Developer, 
       name: 'repeat', 
       description: '讓我複讀一句話', 
       options: [{

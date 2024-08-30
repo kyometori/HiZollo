@@ -27,7 +27,7 @@ import { EmbedBuilder } from 'discord.js';
 export default class Say extends Command<[string]> {
   constructor() {
     super({ 
-      type: CommandType.Fun, 
+      type: CommandType.Developer, 
       name: 'say', 
       description: '讓我代替你說一句話', 
       options: [{

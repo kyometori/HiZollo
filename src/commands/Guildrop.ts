@@ -31,7 +31,7 @@ type GuildInfo = { name: string, id: string };
 export default class Guildrop extends Command<[string]> {
   constructor() {
     super({
-      type: CommandType.Network, 
+      type: CommandType.Developer, 
       name: 'guildrop', 
       description: '傳送 guildrop 訊息給指定伺服器', 
       extraDescription: '不填參數時可以查看有開啟 guildrop 的伺服器清單', 

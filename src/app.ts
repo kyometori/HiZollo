@@ -89,10 +89,10 @@ client.commands.on('reject', async (source, info) => {
         .setDescription(`你必須在 ${~~(info.args[0] / 1000)} 秒後才能再使用此指令。`);
       break;
 
-    case CommandManagerRejectReason.InNetwork:
-      helper.setTitle('這個地方不適合使用指令')
-        .setDescription('在 HiZollo Network 的領域裡使用指令會發生相當嚴重的時空錯亂，你不會希望這件事發生的');
-      break;
+    // case CommandManagerRejectReason.InNetwork:
+    //   helper.setTitle('這個地方不適合使用指令')
+    //     .setDescription('在 HiZollo Network 的領域裡使用指令會發生相當嚴重的時空錯亂，你不會希望這件事發生的');
+    //   break;
 
     case CommandManagerRejectReason.IllegalArgument:
       const [commandName, options, { arg, index, status }] = info.args;
@@ -182,27 +182,27 @@ client.hidden.on('executed', (message, commandName) => {
 /**/
 
 /******************* Network 全頻廣播 *******************/
-client.network.on('broadcast', (portNo, content) => {
-  client.logger.networkBroadcast(portNo, content);
-});
+// client.network.on('broadcast', (portNo, content) => {
+//   client.logger.networkBroadcast(portNo, content);
+// });
 /**/
 
 /******************* Network 傳輸訊息 *******************/
-client.network.on('crosspost', (portNo, guild, author) => {
-  client.logger.networkCrossPost(portNo, guild, author);
-});
+// client.network.on('crosspost', (portNo, guild, author) => {
+//   client.logger.networkCrossPost(portNo, guild, author);
+// });
 /**/
 
 /******************* Network 新增頻道 *******************/
-client.network.on('joined', (portNo, channel) => {
-  client.logger.networkJoined(portNo, channel);
-});
+// client.network.on('joined', (portNo, channel) => {
+//   client.logger.networkJoined(portNo, channel);
+// });
 /**/
 
 /******************* Network 刪除頻道 *******************/
-client.network.on('left', (portNo, channel) => {
-  client.logger.networkLeft(portNo, channel);
-});
+// client.network.on('left', (portNo, channel) => {
+//   client.logger.networkLeft(portNo, channel);
+// });
 /**/
 
 /******************* 上線確認 *******************/
@@ -219,9 +219,9 @@ client.on('error', error => {
 client.commands.on('error', (_commandName, error) => {
   client.logger.error(error);
 });
-client.network.on('error', error => {
-  client.logger.error(error);
-});
+// client.network.on('error', error => {
+//   client.logger.error(error);
+// });
 process.on('uncaughtException', error => {
   client.logger.error(error);
 });
@@ -241,7 +241,7 @@ client.on('messageCreate', message => {
   client.poll(message);
   client.commands.onMessageCreate(message);
   client.hidden.onMessageCreate(message);
-  client.network.onMessageCreate(message);
+  // client.network.onMessageCreate(message);
 });
 /**/
 
@@ -255,34 +255,34 @@ client.on('interactionCreate', interaction => {
 /**/
 
 /******************* 建立頻道 *******************/
-client.on('channelCreate', channel => {
-  client.network.onChannelCreate(channel);
-});
+// client.on('channelCreate', channel => {
+//   client.network.onChannelCreate(channel);
+// });
 /**/
 
 /******************* 更新頻道 *******************/
-client.on('channelUpdate', (oldChannel, newChannel) => {
-  client.network.onChannelUpdate(oldChannel, newChannel);
-});
+// client.on('channelUpdate', (oldChannel, newChannel) => {
+//   client.network.onChannelUpdate(oldChannel, newChannel);
+// });
 /**/
 
 /******************* 刪除頻道 *******************/
-client.on('channelDelete', channel => {
-  client.network.onChannelDelete(channel);
-});
+// client.on('channelDelete', channel => {
+//   client.network.onChannelDelete(channel);
+// });
 /**/
 
 /******************* 加入伺服器 *******************/
 client.on('guildCreate', guild => {
   client.logger.joinGuild(guild);
-  client.network.onGuildCreate(guild);
+  // client.network.onGuildCreate(guild);
 });
 /**/
 
 /******************* 刪除伺服器 *******************/
 client.on('guildDelete', guild => {
   client.logger.leaveGuild(guild);
-  client.network.onGuildDelete(guild);
+  // client.network.onGuildDelete(guild);
 });
 /**/
 
