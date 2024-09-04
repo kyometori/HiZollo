@@ -22,7 +22,7 @@ import { DjsBullsAndCows } from "@hizollo/games";
 import { ApplicationCommandOptionType, PermissionFlagsBits } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import { bullsAndCows as strings } from "../features/json/gameString.json";
+import strings from "../features/info/gameString";
 import { CommandType } from "../typings/enums";
 
 export default class Bullsandcows extends Command<[boolean]> {
@@ -60,7 +60,7 @@ export default class Bullsandcows extends Command<[boolean]> {
       hardMode: hardMode ?? false, 
       source: source.source, 
       time: 60e3, 
-      strings: strings
+      strings: strings.bullsAndCows
     });
 
     await game.initialize();

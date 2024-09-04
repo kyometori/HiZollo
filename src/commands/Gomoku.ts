@@ -22,7 +22,7 @@ import { DjsGomoku } from "@hizollo/games";
 import { ApplicationCommandOptionType, GuildMember, PermissionFlagsBits } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import { gomoku as strings } from "../features/json/gameString.json";
+import strings from "../features/info/gameString";
 import { CommandOptionType, CommandType } from "../typings/enums";
 
 const symbols = ['🔵', '🔴', '🟢'];
@@ -86,7 +86,7 @@ export default class Gomoku extends Command<[GuildMember, GuildMember]> {
       boardSize: 13, 
       source: source.source, 
       time: 120e3, 
-      strings: strings
+      strings: strings.gomoku
     });
 
     await game.initialize();

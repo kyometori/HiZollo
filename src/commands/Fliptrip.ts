@@ -22,7 +22,7 @@ import { DjsFlipTrip } from "@hizollo/games";
 import { ApplicationCommandOptionType, PermissionFlagsBits } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import { flipTrip as strings } from "../features/json/gameString.json";
+import strings from "../features/info/gameString";
 import { CommandType } from "../typings/enums";
 
 export default class FlipTrip extends Command<[number]> {
@@ -62,7 +62,7 @@ export default class FlipTrip extends Command<[number]> {
       boardSize: boardSize ?? 3, 
       source: source.source, 
       time: 30e3, 
-      strings: strings
+      strings: strings.flipTrip
     });
 
     await game.initialize();

@@ -23,6 +23,7 @@ import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
 import randomInt from "../features/utils/randomInt";
 import { CommandType } from "../typings/enums";
+import emoji from "@root/app_emoji.json";
 
 export default class Dice extends Command<[number]> {
   constructor() {
@@ -50,17 +51,17 @@ export default class Dice extends Command<[number]> {
     if (point) await source.update(this.pointsEmoji[point-1]);
     else {
       const number = ~~(randomInt(0, 102) / 17);
-      if (number === 6) await source.update(`<:hzdice_wth:838041109099446272>\n${source.user}，你丟出了……呃，87 點`);
+      if (number === 6) await source.update(`${emoji.dice87}\n${source.user}，你丟出了……呃，87 點`);
       else await source.update(`${this.pointsEmoji[number]} 你丟出了 ${number+1} 點！`);
     }
   }
 
   private pointsEmoji = [
-    '<:hzdice_one:836137736317960202>',
-    '<:hzdice_two:836137736276148264>',
-    '<:hzdice_three:836137736398176256>',
-    '<:hzdice_four:838041763436298260>',
-    '<:hzdice_five:836137736527937537>',
-    '<:hzdice_six:836137736037203969>',
+    emoji.dice1,
+    emoji.dice2,
+    emoji.dice3,
+    emoji.dice4,
+    emoji.dice5,
+    emoji.dice6,
   ];
 }

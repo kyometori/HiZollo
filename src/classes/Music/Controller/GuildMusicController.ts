@@ -24,6 +24,7 @@ import { MusicControllerActions, MusicLoopState } from "../../../typings/enums";
 import { GuildMusicControllerOptions } from "../../../typings/interfaces";
 import { GuildMusicManager } from "../Model/GuildMusicManager";
 import { MusicViewRenderer } from "../View/MusicViewRenderer";
+import emoji from "@root/app_emoji.json";
 
 /**
  * 代表單個伺服器的音樂遙控器
@@ -228,9 +229,9 @@ export class GuildMusicController {
    * 遙控器按鈕上的表情符號
    */
   private emojis = Object.freeze({
-    play: ['1002969357980270642', '880450475202314300'], 
+    play: [emoji.pause, emoji.next], 
     repeat: ['➡️', '🔂', '🔁'], 
-    skip: '880450475156176906', 
+    skip: emoji.last, 
     info: '🎵'
   });
 }

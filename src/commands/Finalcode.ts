@@ -22,7 +22,7 @@ import { DjsFinalCode } from "@hizollo/games";
 import { ApplicationCommandOptionType, GuildMember, PermissionFlagsBits } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import { finalCode as strings } from "../features/json/gameString.json";
+import strings from "../features/info/gameString";
 import { CommandOptionType, CommandType } from "../typings/enums";
 
 export default class FinalCode extends Command<GuildMember[]> {
@@ -67,7 +67,7 @@ export default class FinalCode extends Command<GuildMember[]> {
       players: playerOptions, 
       source: source.source, 
       time: 15e3, 
-      strings: strings
+      strings: strings.finalCode
     });
 
     await game.initialize();
