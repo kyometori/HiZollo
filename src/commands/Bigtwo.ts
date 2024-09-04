@@ -22,7 +22,7 @@ import { DjsBigTwo } from "@hizollo/games";
 import { ApplicationCommandOptionType, GuildMember, PermissionFlagsBits } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import { bigTwo as strings } from "../features/json/gameString.json";
+import strings from "../features/info/gameString";
 import { CommandOptionType, CommandType } from "../typings/enums";
 
 export default class Bigtwo extends Command<[GuildMember, GuildMember, GuildMember]> {
@@ -96,7 +96,7 @@ export default class Bigtwo extends Command<[GuildMember, GuildMember, GuildMemb
       players: playerOptions, 
       source: source.source, 
       time: 120e3, 
-      strings: strings
+      strings: strings.bigTwo
     });
 
     await game.initialize();

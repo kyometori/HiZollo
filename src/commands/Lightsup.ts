@@ -22,7 +22,7 @@ import { DjsLightsUp } from "@hizollo/games";
 import { PermissionFlagsBits } from "discord.js";
 import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
-import { lightsUp as strings } from "../features/json/gameString.json";
+import strings from "../features/info/gameString";
 import { CommandType } from "../typings/enums";
 
 export default class Lightsup extends Command<[]> {
@@ -49,7 +49,7 @@ export default class Lightsup extends Command<[]> {
       players: [source.user], 
       source: source.source, 
       time: 30e3, 
-      strings: strings
+      strings: strings.lightsUp
     });
 
     await game.initialize();
