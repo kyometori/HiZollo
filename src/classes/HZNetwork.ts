@@ -21,10 +21,12 @@
 import { APIEmbed, Awaitable, Channel, ChannelType, EmbedBuilder, Guild, Message, PermissionFlagsBits, TextChannel, User, Webhook, WebhookMessageCreateOptions } from "discord.js";
 import { EventEmitter } from "node:events";
 import { HZClient } from "./HZClient";
-import config from "@root/config";
 import tempMessage from "../features/utils/tempMessage";
 import { HZNetworkEvents } from "../typings/interfaces";
 import removeMd from "../features/utils/removeMd";
+import emoji from "@root/app_emoji.json";
+import config from "@root/config";
+
 /**
  * HiZollo Network 系統
  * @extends EventEmitter
@@ -179,7 +181,7 @@ export class HZNetwork extends EventEmitter {
         const text = removeMd(msg.cleanContent);
 
         reference.content = this.parseReply(text);
-        if (msg.attachments.size > 0) reference.content += ' <:attachment:875011591953874955>';
+        if (msg.attachments.size > 0) reference.content += ' ' + emoji.attachment;
         reference.user = msg.author;
       }
     }

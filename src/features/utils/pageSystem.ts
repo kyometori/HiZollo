@@ -24,7 +24,7 @@ import { PageSystemDescriptionOptions, PageSystemEmbedFieldOptions, PageSystemPa
 import { PageSystemOptions } from '../../typings/types.js';
 import fixedDigits from './fixedDigits.js';
 import randomInt from './randomInt.js';
-
+import emoji from "@root/app_emoji.json";
 
 /**
  * 建立一個有時效性的翻頁系統，如果選項的型別是 `PageSystemDescriptionOptions`，且 `allowSelect` 為 `true`，會額外建立一個選單給使用者挑選
@@ -149,15 +149,15 @@ export default async function pageSystem(options: PageSystemOptions): Promise<Pa
 function newButtons(pageCount: number): ActionRowBuilder<ButtonBuilder> {
   const buttons: ButtonBuilder[] = [];
   if (pageCount >= 1) {
-    buttons.push(new ButtonBuilder().setCustomId('page_exit').setEmoji('880450475193946162').setStyle(ButtonStyle.Danger));
+    buttons.push(new ButtonBuilder().setCustomId('page_exit').setEmoji(emoji.exit).setStyle(ButtonStyle.Danger));
   }
   if (pageCount >= 2) {
-    buttons.unshift(new ButtonBuilder().setCustomId('page_prev').setEmoji('880450475265261589').setStyle(ButtonStyle.Primary));
-    buttons.push(new ButtonBuilder().setCustomId('page_next').setEmoji('880450475202314300').setStyle(ButtonStyle.Primary));
+    buttons.unshift(new ButtonBuilder().setCustomId('page_prev').setEmoji(emoji.prev).setStyle(ButtonStyle.Primary));
+    buttons.push(new ButtonBuilder().setCustomId('page_next').setEmoji(emoji.next).setStyle(ButtonStyle.Primary));
   }
   if (pageCount >= 3) {
-    buttons.unshift(new ButtonBuilder().setCustomId('page_home').setEmoji('880448441623380048').setStyle(ButtonStyle.Primary));
-    buttons.push(new ButtonBuilder().setCustomId('page_last').setEmoji('880450475156176906').setStyle(ButtonStyle.Primary));
+    buttons.unshift(new ButtonBuilder().setCustomId('page_home').setEmoji(emoji.home).setStyle(ButtonStyle.Primary));
+    buttons.push(new ButtonBuilder().setCustomId('page_last').setEmoji(emoji.last).setStyle(ButtonStyle.Primary));
   }
   return new ActionRowBuilder<ButtonBuilder>().addComponents(...buttons);
 }

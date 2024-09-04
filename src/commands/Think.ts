@@ -23,6 +23,7 @@ import { Command } from "../classes/Command";
 import { Source } from "../classes/Source";
 import randomElement from "../features/utils/randomElement";
 import { CommandType } from "../typings/enums";
+import emoji from "@root/app_emoji.json";
 
 export default class Think extends Command<[string]> {
   constructor() {
@@ -60,17 +61,17 @@ export default class Think extends Command<[string]> {
 const thinks = Object.freeze({
   'normal': '🤔',
   'monocle': '🧐',
-  '10': '<:think:856104264299708437>',
-  'attano': '<:think:856104387234889729>',
-  'distortion': '<:think:856105159162593300>',
-  'super': '<:think:856104322701983755>',
-  'thonk': '<:think:856104299892441089>',
-  'hyper': '<:think:931860641742987356>',
-  'rainbow': '<:think:931860642367938600>',
-  'smile': '<:think:927122092451844147>',
-  'sinking': '<:think:940233622399615036>',
-  'blue': '<:think:927122090467930163>',
-  'thong': '<:think:927125984984055809>',
-  'jojo': '<:think:1012289387012304956>',
-  'lazer': '<:think:1012289398555021483>'
+  '10': emoji["10think"],
+  'attano': emoji.attanoThink,
+  'distortion': emoji.distortionThink,
+  'super': emoji.superthonk,
+  'thonk': emoji.thonk,
+  'hyper': emoji.hyperthonk,
+  'rainbow': emoji.rainbowthonk,
+  'smile': emoji.smilethink,
+  'sinking': emoji.sinking,
+  'blue': emoji.bluethink,
+  'thong': emoji.thongk,
+  'jojo': emoji.jojothink,
+  'lazer': emoji.lazerthink
 });
