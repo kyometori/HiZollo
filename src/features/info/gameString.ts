@@ -270,4 +270,4 @@ export default {
       }
     }
   }
-} as const;
+};
