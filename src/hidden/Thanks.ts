@@ -27,7 +27,7 @@ export default class Thanks extends HiddenCommand {
   }
 
   public filter(message: Message): boolean {
-    return message.content.startsWith('???') &&
+    return message.content.startsWith('!!!') &&
       (('name' in message.channel && message.channel?.name == '釣魚拉霸室') || message.channel.isTestChannel());
   }
 
