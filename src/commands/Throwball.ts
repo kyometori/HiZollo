@@ -77,7 +77,7 @@ export default class Throwball extends Command<[GuildMember, string]> {
 
     setTimeout(async () => {
       const result = throwball(source.client, member, target, type);
-      await source.channel?.send({ content: result, allowedMentions: { parse: ['users'] } });
+      await source.channel?.send({ content: result, allowedMentions: { parse: [] } });
     }, 1900);
   }
 }

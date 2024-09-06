@@ -64,8 +64,7 @@ export abstract class HiddenCommand {
    * @returns 是否成功回應（必定為 `true`）
    */
   protected allTimeResponse(message: Message, notEpic: HiddenResponse[], epic: HiddenResponse[]): true {
-    const response = Math.random() < 0.02 ? randomElement(epic) : randomElement(notEpic);
-    
+const response = Math.random() < 0.02 ? randomElement(epic) : randomElement(notEpic);
     message.channel.send(format(message, response));
     return true;
   }
@@ -100,27 +99,20 @@ export abstract class HiddenCommand {
   }
 }
 
-function format(message: Message, response: HiddenResponse): MessageCreateOptions {
+function format(message: Message, response: HiddenResponse): HiddenResponse {
   const location = message.guild?.name ?? "這裡";
   const halfwidth = /[\x21-\x7e]/;
   const formattedLocation = 
     (halfwidth.test(location[0]) ? " " : "") + location +
     (halfwidth.test(location[location.length - 1]) ? " " : "");
-  let res: MessageCreateOptions = { allowedMentions: { parse: ['users'] } };
 
   if (typeof response === "string") {
-    res.content = response
-      .replaceAll('%u', message.author.toString())
-      .replaceAll('%g', formattedLocation);
+    response = response.replaceAll('%u', message.author.toString());
+    response = response.replaceAll('%g', formattedLocation);
   }
   else {
-    res = { 
-      ...res, 
-      ...response, 
-      content: response.content
-        ?.replaceAll('%u', message.author.toString())
-        ?.replaceAll('%g', formattedLocation)
-    };
+    response.content = response.content?.replaceAll('%u', message.author.toString());
+    response.content = response.content?.replaceAll('%g', formattedLocation);
   }
-  return res;
+  return response;
 }
