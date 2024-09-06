@@ -56,7 +56,7 @@ const client = new HZClient({
     ThreadMemberManager: 0,
     UserManager: 0
   }),
-  allowedMentions: { parse: [] }, 
+  allowedMentions: { parse: ['users'] }, 
   devMode: process.argv[2]?.toLowerCase() === 'dev'
 });
 
