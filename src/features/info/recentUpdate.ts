@@ -35,5 +35,5 @@ export default `
 - 改變 \`calc\` 指令運算結果的顯示方式
 - 關閉可以控制機器人的相關指令
   - 包含 \`say\`、\`repeat\`、\`hznetwork\`、\`guildrop\`、和 HZNetwork 本身
-  - 這像更動會是暫時的
+  - 這項更動會是暫時的
 `;
