@@ -26,6 +26,7 @@ export default `
   - \`buttonrole\` 指令遇到 Unicode 表情時會出問題
   - \`gomoku\` 指令的英文字母在某些手機裝置會被合併成國旗
 - \`getmsg\` 指令獲得的訊息不包含指令本身
+- HZNetwork 支援貼圖和訊息回覆連結
 - \`choose\` 指令支援權重
 - \`server\` 指令現在會顯示更詳細的頻道資料
 - \`vote\` 指令現在使用時會跳出即將下架的提示
