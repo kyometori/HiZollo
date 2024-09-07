@@ -30,6 +30,7 @@ export default class Choose extends Command<string[]> {
       type: CommandType.Utility, 
       name: 'choose', 
       description: '讓我來拯救你的選擇困難症', 
+      extraDescription: '可以使用 `權重:選項名稱` 的語法來控制選項的權重，預設的權重是 `1`',
       options: [{ 
         type: ApplicationCommandOptionType.String, 
         name: '選項%i', 
